@@ -11,15 +11,14 @@ class DetailsPage extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         bottom: false,
+        left: false,
+        right: false,
         child: Stack(
           children: [
             ListView(
               children: [MovieDetails(movieId: movieId)],
             ),
-            const Positioned(
-              top: 15,
-              left: 15,
-              child: BackButton())
+            const Positioned(top: 15, left: 15, child: BackButton())
           ],
         ),
       ),

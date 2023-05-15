@@ -30,7 +30,7 @@ class NowPlaying extends ConsumerWidget {
                         autoPlay: true,
                         viewportFraction: 1));
               },
-              error: (e, s) => Text(s.toString()),
+              error: (e, s) => const Text('Error loading!'),
               loading: () => const Center(
                     child: CircularProgressIndicator(),
                   )),

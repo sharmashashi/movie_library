@@ -27,4 +27,19 @@ class HttpServiceImpl implements HttpService {
     }
     return jsonDecode(response.body);
   }
+
+  @override
+  Future<void> post(
+      {required String endpoint,
+      required Map<String, String> headers,
+      required Map<String, dynamic> body}) async {
+    final response = await http.post(Uri.parse(endpoint),
+        headers: headers, body: jsonEncode(body));
+    if (response.statusCode != 200) {
+      log(response.body);
+      throw const HttpException("Error sending notification!");
+    } else if (response.statusCode == 200) {
+      log("POST successful");
+    }
+  }
 }
