@@ -32,8 +32,11 @@ class MovieCard extends StatelessWidget {
             ),
             Flexible(
                 child: Center(
-                    child: Text(title,
-                        style: Theme.of(context).textTheme.bodySmall)))
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.5),
+                      child: Text(title,
+                          style: Theme.of(context).textTheme.bodySmall),
+                    )))
           ],
         ),
       ),

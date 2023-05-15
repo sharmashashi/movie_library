@@ -9,10 +9,19 @@ class DetailsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: ListView(
-        children: [
-          MovieDetails(movieId:movieId)
-        ],
+      body: SafeArea(
+        bottom: false,
+        child: Stack(
+          children: [
+            ListView(
+              children: [MovieDetails(movieId: movieId)],
+            ),
+            const Positioned(
+              top: 15,
+              left: 15,
+              child: BackButton())
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,10 +26,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Movie Library',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: FlexColorScheme.light(scheme: FlexScheme.purpleM3).toTheme,
+        darkTheme: FlexColorScheme.dark(scheme: FlexScheme.purpleM3).toTheme,
         home: const Home(),
       ),
     );
