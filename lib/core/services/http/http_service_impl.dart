@@ -36,7 +36,6 @@ class HttpServiceImpl implements HttpService {
     final response = await http.post(Uri.parse(endpoint),
         headers: headers, body: jsonEncode(body));
     if (response.statusCode != 200) {
-      log(response.body);
       throw const HttpException("Error sending notification!");
     } else if (response.statusCode == 200) {
       log("POST successful");

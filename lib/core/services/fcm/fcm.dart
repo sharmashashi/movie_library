@@ -9,10 +9,6 @@ import 'package:movie_library/firebase_options.dart';
 Future<void> initFirebaseServices() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.instance.requestPermission();
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
-  messaging.getToken().then((value) {
-    log('Firebase token: $value');
-  });
 }
 
 onMessageHandler(BuildContext context) {

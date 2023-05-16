@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:movie_library/features/movie_details/models/cast_details_response.dart';
 import 'package:movie_library/features/movie_details/repositories/movie_details_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -9,6 +11,10 @@ class CastDetails extends _$CastDetails {
   Future<CastDetailsResponse> build(int movieId) async {
     return await ref
         .read(movieDetailsRepositoryProvider)
-        .getCastDetails(movieId: movieId);
+        .getCastDetails(movieId: movieId)
+        .onError((error, stackTrace) {
+      Zone.current.handleUncaughtError(error!, stackTrace);
+      throw error;
+    });
   }
 }

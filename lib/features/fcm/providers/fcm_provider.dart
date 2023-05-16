@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:movie_library/core/configs/configs.dart';
 import 'package:movie_library/features/fcm/repositories/fcm_repository.dart';
@@ -10,7 +12,7 @@ class Fcm extends _$Fcm {
   void build() {}
 
   Future<void> sendNotification() async {
-    await Future.delayed(const Duration(seconds: 2));
+    // await Future.delayed(const Duration(seconds: 2));
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'key=${Configs.serverKey}',
@@ -28,6 +30,10 @@ class Fcm extends _$Fcm {
     };
     ref
         .read(fcmRepositoryProvider)
-        .sendNotification(headers: headers, body: body);
+        .sendNotification(headers: headers, body: body)
+        .onError((error, stackTrace) {
+      Zone.current.handleUncaughtError(error!, stackTrace);
+      throw error;
+    });
   }
 }

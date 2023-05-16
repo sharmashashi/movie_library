@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -10,10 +11,13 @@ import 'package:movie_library/screens/home.dart';
 void main() {
   runZonedGuarded(() async {
     await dotenv.load(fileName: '.env');
-    await initFirebaseServices();
+    if (Platform.isAndroid) {
+      await initFirebaseServices();
+    }
     runApp(const MyApp());
   }, (error, stack) {
-    log("ERROR", error: error, stackTrace: stack);
+    //handle your erros here
+    log("ERROR!!!", error: error, stackTrace: stack);
   });
 }
 
